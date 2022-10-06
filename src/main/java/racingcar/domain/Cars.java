@@ -4,6 +4,7 @@ import racingcar.domain.strategy.MovingStrategy;
 import racingcar.domain.strategy.NumberGenerateStrategy;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 public class Cars {
@@ -26,11 +27,16 @@ public class Cars {
         }
     }
 
-    public void carsPlayRound(MovingStrategy movingStrategy, NumberGenerateStrategy numberGenerateStrategy) {
+    public GameRoundResult carsPlayRound(MovingStrategy movingStrategy, NumberGenerateStrategy numberGenerateStrategy) {
+        HashMap<String, Integer> playedOneRoundResultMap = new HashMap<>();
+
         for (Car car : cars) {
             CarStatus carStatus = movingStrategy.playRound(numberGenerateStrategy.generateNumber());
             car.playRound(carStatus);
+            playedOneRoundResultMap.put(car.getName(), car.getPosition());
         }
+
+        return GameRoundResult.createGameRoundResult(playedOneRoundResultMap);
     }
 
     public List<Car> getWinners() {

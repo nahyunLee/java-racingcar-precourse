@@ -10,10 +10,7 @@ import racingcar.domain.strategy.MovingStrategy;
 import racingcar.domain.strategy.NumberGenerateStrategy;
 import racingcar.domain.strategy.RandomNumberGenerateStrategy;
 
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
 import java.util.stream.Stream;
 
 import static org.assertj.core.api.Assertions.assertThat;
@@ -65,6 +62,22 @@ public class CarsTest {
         assertAll(
                 () -> assertThat(car1().getPosition()).isBetween(0, 1),
                 () -> assertThat(car2().getPosition()).isBetween(0, 1)
+        );
+    }
+
+    @Test
+    @DisplayName("자동차들을 게임 한라운드 플레이하면 GameRoundResult을 반환한다.")
+    void testMoveCars_returnWithGameRoundResult() {
+        //given
+        Cars cars = Cars.createCars(Arrays.asList(car1(), car2()));
+        GameRoundResult gameRoundResult = cars.carsPlayRound(new CarMovingStrategy(), new RandomNumberGenerateStrategy());
+
+        //when
+        Map<String, Integer> playedOneRoundResultMap = gameRoundResult.getGameRoundResultMap();
+        //then
+        assertAll(
+                () -> assertThat(playedOneRoundResultMap.get(car1().getName())).isBetween(0, 1),
+                () -> assertThat(playedOneRoundResultMap.get(car2().getName())).isBetween(0, 1)
         );
     }
 

@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
+import static racingcar.domain.Fixtures.car1;
 
 public class CarTest {
     //메세지 정의
@@ -74,5 +75,19 @@ public class CarTest {
 
         //then
         assertThat(car.getPosition()).isEqualTo(0);
+    }
+
+    @Test
+    @DisplayName("차의 이름을 반한다.")
+    void test_getCarName() {
+        //given
+        String name = "car1";
+        Car car = Car.createCar(name);
+
+        //when
+        String carName = car.getName();
+
+        //then
+        assertThat(carName).isEqualTo(name);
     }
 }
