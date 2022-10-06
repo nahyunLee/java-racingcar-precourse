@@ -1,7 +1,7 @@
 package racingcar.application;
 
 import static java.lang.String.format;
-import static racingcar.application.CarConstants.CAR_NAME_SPLITTER;
+import static racingcar.presentation.CarViewConstants.CAR_NAME_SPLITTER;
 
 public class ValidService {
 

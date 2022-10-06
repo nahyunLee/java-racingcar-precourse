@@ -1,11 +1,13 @@
 package racingcar.presentation;
 
-import camp.nextstep.edu.missionutils.Console;
 import racingcar.application.RacingGameService;
+import racingcar.domain.GameResult;
+import racingcar.domain.GameRoundResult;
 
-import static camp.nextstep.edu.missionutils.Console.readLine;
-import static racingcar.presentation.View.getCarsNameAnswer;
-import static racingcar.presentation.View.getRoundNumberAnswer;
+import java.util.List;
+import java.util.Map;
+
+import static racingcar.presentation.View.*;
 
 public class RacingGameController {
 
@@ -14,13 +16,23 @@ public class RacingGameController {
         String roundNumberAnswer = getRoundNumberAnswer();
 
         RacingGameService racingGameService = new RacingGameService();
-        racingGameService.playGame(carsNameAnswer, roundNumberAnswer);
+        GameResult gameResult = racingGameService.startGame(carsNameAnswer, roundNumberAnswer);
 
-        //쉼표로 구분했는지
-        //자동차 이름 유효성은 도메인이 해야함 -> 자동차 이름은 자동차의 역할이기 때문에
-
-        //숫자인지 확인
-        //1이상인지 확인
+        printResultInformation();
+        printGameRoundResults(gameResult.getGameRoundResultList());
+        printWinner(gameResult.getWinnerCars());
     }
 
+    private void printGameRoundResults(List<GameRoundResult> gameRoundResults) {
+        for (GameRoundResult gameRoundResult : gameRoundResults) {
+            printGameRoundResult(gameRoundResult.getGameRoundResultMap());
+            printNewLine();
+        }
+    }
+
+    private void printGameRoundResult(Map<String, Integer> gameRoundResultMap) {
+        for (String carName : gameRoundResultMap.keySet()) {
+            printCarNameWithPosition(carName, gameRoundResultMap.get(carName));
+        }
+    }
 }

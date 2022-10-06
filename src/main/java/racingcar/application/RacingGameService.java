@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
-import static racingcar.application.CarConstants.CAR_NAME_SPLITTER;
+import static racingcar.presentation.CarViewConstants.CAR_NAME_SPLITTER;
 import static racingcar.application.ValidService.validCarsNameAnswer;
 import static racingcar.application.ValidService.validRoundNumberAnswer;
 
@@ -22,9 +22,9 @@ public class RacingGameService {
 
         Cars cars = createCars(carsNameAnswer);
 
-        List<GameRoundResult> gameResults = this.playGameRounds(cars, Integer.parseInt(roundNumberAnswer));
+        List<GameRoundResult> gameRoundResults = this.playGameRounds(cars, Integer.parseInt(roundNumberAnswer));
 
-        return GameResult.createGameResult(gameResults, cars.getWinnerCarNames());
+        return GameResult.createGameResult(gameRoundResults, cars.getWinnerCarNames());
     }
 
     Cars createCars(String carsNameAnswer) {
@@ -34,7 +34,6 @@ public class RacingGameService {
 
     private List<GameRoundResult> playGameRounds(Cars cars, int roundCount) {
         List<GameRoundResult> gameRoundResults = new ArrayList<>();
-
         for (int i = 0; i < roundCount; i++) {
             gameRoundResults.add(cars.carsPlayRound(new CarMovingStrategy(), new RandomNumberGenerateStrategy()));
         }
