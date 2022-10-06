@@ -4,7 +4,7 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.Car;
 import racingcar.domain.Cars;
-import racingcar.domain.GameRoundResult;
+import racingcar.domain.GameResult;
 
 import java.util.List;
 
@@ -48,9 +48,9 @@ class RacingGameServiceTest {
         String roundNumberAnswer = "3";
 
         //when
-        List<GameRoundResult> gameRoundResults = racingGameService.startGame(carsNameString, roundNumberAnswer);
+        GameResult gameResult = racingGameService.startGame(carsNameString, roundNumberAnswer);
 
         //then
-        assertThat(gameRoundResults).hasSize(3);
+        assertThat(gameResult.getGameRoundResultList()).hasSize(3);
     }
 }

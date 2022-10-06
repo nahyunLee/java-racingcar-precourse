@@ -1,10 +1,9 @@
 package racingcar.application;
 
 import racingcar.domain.Cars;
+import racingcar.domain.GameResult;
 import racingcar.domain.GameRoundResult;
 import racingcar.domain.strategy.CarMovingStrategy;
-import racingcar.domain.strategy.MovingStrategy;
-import racingcar.domain.strategy.NumberGenerateStrategy;
 import racingcar.domain.strategy.RandomNumberGenerateStrategy;
 
 import java.util.ArrayList;
@@ -17,14 +16,15 @@ import static racingcar.application.ValidService.validRoundNumberAnswer;
 
 public class RacingGameService {
 
-    public List<GameRoundResult> startGame(String carsNameAnswer, String roundNumberAnswer) {
+    public GameResult startGame(String carsNameAnswer, String roundNumberAnswer) {
         validCarsNameAnswer(carsNameAnswer);
         validRoundNumberAnswer(roundNumberAnswer);
 
         Cars cars = createCars(carsNameAnswer);
-        int roundCount = Integer.parseInt(roundNumberAnswer);
 
-        return this.playGameRounds(cars, roundCount);
+        List<GameRoundResult> gameResults = this.playGameRounds(cars, Integer.parseInt(roundNumberAnswer));
+
+        return GameResult.createGameResult(gameResults, cars.getWinnerCarNames());
     }
 
     Cars createCars(String carsNameAnswer) {
