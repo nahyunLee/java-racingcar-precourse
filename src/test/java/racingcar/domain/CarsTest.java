@@ -80,7 +80,7 @@ public class CarsTest {
     }
 
     @Test
-    @DisplayName("최종 우승자들을 반환한다.")
+    @DisplayName("최종 우승자들의 이름을 반환한다.")
     void test_getWinners() {
         //given
         Car car1 = car1();
@@ -98,12 +98,12 @@ public class CarsTest {
         Cars cars = Cars.createCarsWithCarList(Arrays.asList(car1, car2, car3));
 
         //when
-        List<Car> winnerCars = cars.getWinners();
+        List<String> winnerCarNames = cars.getWinnerCarNames();
 
         //then
         assertAll(
-                () -> assertThat(winnerCars.contains(car1)).isTrue(),
-                () -> assertThat(winnerCars.contains(car3)).isTrue()
+                () -> assertThat(winnerCarNames.contains(car1.getName())).isTrue(),
+                () -> assertThat(winnerCarNames.contains(car3.getName())).isTrue()
         );
     }
 

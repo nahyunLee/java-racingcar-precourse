@@ -55,13 +55,13 @@ public class Cars {
         return GameRoundResult.createGameRoundResult(playedOneRoundResultMap);
     }
 
-    public List<Car> getWinners() {
-        List<Car> winnerCars = new ArrayList<>();
+    public List<String> getWinnerCarNames() {
+        List<String> winnerCars = new ArrayList<>();
         int maxPosition = this.getMaxPosition();
 
         for (Car car : cars) {
             if (car.getPosition() == maxPosition) {
-                winnerCars.add(car);
+                winnerCars.add(car.getName());
             }
         }
 
