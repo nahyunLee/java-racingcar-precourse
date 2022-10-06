@@ -15,7 +15,13 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars createCars(List<Car> cars) {
+    public static Cars createCarsWithNames(List<String> carNames) {
+        validCarsSize(carNames.size());
+
+        return new Cars(createCarList(carNames));
+    }
+
+    public static Cars createCarsWithCarList(List<Car> cars) {
         validCarsSize(cars.size());
 
         return new Cars(cars);
@@ -25,6 +31,15 @@ public class Cars {
         if (size < 2) {
             throw new IllegalArgumentException("자동차는 최소 2대가 필요합니다.");
         }
+    }
+
+    private static List<Car> createCarList(List<String> carNames) {
+        List<Car> createdCares = new ArrayList<>();
+
+        for (String carName : carNames) {
+            createdCares.add(Car.createCar(carName));
+        }
+        return createdCares;
     }
 
     public GameRoundResult carsPlayRound(MovingStrategy movingStrategy, NumberGenerateStrategy numberGenerateStrategy) {

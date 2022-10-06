@@ -6,8 +6,6 @@ import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.Arguments;
 import org.junit.jupiter.params.provider.MethodSource;
 import racingcar.domain.strategy.CarMovingStrategy;
-import racingcar.domain.strategy.MovingStrategy;
-import racingcar.domain.strategy.NumberGenerateStrategy;
 import racingcar.domain.strategy.RandomNumberGenerateStrategy;
 
 import java.util.*;
@@ -30,14 +28,14 @@ public class CarsTest {
     @Test
     @DisplayName("자동차 리스트로 일급컬렉션 Cars를 생성한다.")
     void test_createCars() {
-        assertDoesNotThrow(() -> Cars.createCars(Arrays.asList(car1(), car2())));
+        assertDoesNotThrow(() -> Cars.createCarsWithCarList(Arrays.asList(car1(), car2())));
     }
 
     @ParameterizedTest
     @MethodSource("invalidSizeCarList")
     @DisplayName("자동차가 1개 이하인 리스트로 일급컬렉션 Cars를 생성하면 IllegalArgumentExceptiond을 반환한다. ")
     void createCars_withEmptyList(List<Car> cars) {
-        assertThatThrownBy(() -> Cars.createCars(cars))
+        assertThatThrownBy(() -> Cars.createCarsWithCarList(cars))
                 .isInstanceOf(IllegalArgumentException.class)
                 .hasMessageContaining("자동차는 최소 2대가 필요합니다.");
     }
@@ -53,7 +51,7 @@ public class CarsTest {
     @DisplayName("자동차들을 게임 한라운드 플레이한다.")
     void testMoveCars() {
         //given
-        Cars cars = Cars.createCars(Arrays.asList(car1(), car2()));
+        Cars cars = Cars.createCarsWithCarList(Arrays.asList(car1(), car2()));
 
         //when
         cars.carsPlayRound(new CarMovingStrategy(), new RandomNumberGenerateStrategy());
@@ -69,7 +67,7 @@ public class CarsTest {
     @DisplayName("자동차들을 게임 한라운드 플레이하면 GameRoundResult을 반환한다.")
     void testMoveCars_returnWithGameRoundResult() {
         //given
-        Cars cars = Cars.createCars(Arrays.asList(car1(), car2()));
+        Cars cars = Cars.createCarsWithCarList(Arrays.asList(car1(), car2()));
         GameRoundResult gameRoundResult = cars.carsPlayRound(new CarMovingStrategy(), new RandomNumberGenerateStrategy());
 
         //when
@@ -97,7 +95,7 @@ public class CarsTest {
         car3.playRound(CarStatus.MOVE);
         car3.playRound(CarStatus.MOVE);
 
-        Cars cars = Cars.createCars(Arrays.asList(car1, car2, car3));
+        Cars cars = Cars.createCarsWithCarList(Arrays.asList(car1, car2, car3));
 
         //when
         List<Car> winnerCars = cars.getWinners();
