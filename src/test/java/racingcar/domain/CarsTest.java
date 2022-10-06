@@ -106,4 +106,18 @@ public class CarsTest {
                 () -> assertThat(winnerCars.contains(car3)).isTrue()
         );
     }
+
+    @Test
+    @DisplayName("반환받은 자동차들의 정보들은 수정하려고 하면 UnsupportedOperationException을 반환한다.")
+    void test_cannotModify() {
+        //given
+        Cars cars = Cars.createCarsWithCarList(Arrays.asList(car1(), car2()));
+
+        //when
+        List<Car> carList = cars.getCars();
+
+        //then
+        assertThatThrownBy(() -> carList.add(Car.createCar("car3")))
+                .isInstanceOf(UnsupportedOperationException.class);
+    }
 }

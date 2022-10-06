@@ -4,6 +4,7 @@ import racingcar.domain.strategy.MovingStrategy;
 import racingcar.domain.strategy.NumberGenerateStrategy;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
@@ -75,5 +76,9 @@ public class Cars {
         }
 
         return maxPosition;
+    }
+
+    public List<Car> getCars() {
+        return Collections.unmodifiableList(cars);
     }
 }

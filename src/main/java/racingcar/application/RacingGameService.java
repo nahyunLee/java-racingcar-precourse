@@ -17,20 +17,26 @@ import static racingcar.application.ValidService.validRoundNumberAnswer;
 
 public class RacingGameService {
 
-    public List<GameRoundResult> playGame(String carsNameAnswer, String roundNumberAnswer) {
+    public List<GameRoundResult> startGame(String carsNameAnswer, String roundNumberAnswer) {
         validCarsNameAnswer(carsNameAnswer);
         validRoundNumberAnswer(roundNumberAnswer);
 
+        Cars cars = createCars(carsNameAnswer);
+        int roundCount = Integer.parseInt(roundNumberAnswer);
+
+        return this.playGameRounds(cars, roundCount);
+    }
+
+    Cars createCars(String carsNameAnswer) {
         String[] carNames = carsNameAnswer.split(CAR_NAME_SPLITTER);
-        Cars cars = Cars.createCarsWithNames(Arrays.asList(carNames));
-        int roundNumber = Integer.parseInt(roundNumberAnswer);
+        return Cars.createCarsWithNames(Arrays.asList(carNames));
+    }
+
+    private List<GameRoundResult> playGameRounds(Cars cars, int roundCount) {
         List<GameRoundResult> gameRoundResults = new ArrayList<>();
 
-        MovingStrategy movingStrategy = new CarMovingStrategy();
-        NumberGenerateStrategy numberGenerateStrategy = new RandomNumberGenerateStrategy();
-
-        for (int i = 0; i < roundNumber; i++) {
-            gameRoundResults.add(cars.carsPlayRound(movingStrategy, numberGenerateStrategy));
+        for (int i = 0; i < roundCount; i++) {
+            gameRoundResults.add(cars.carsPlayRound(new CarMovingStrategy(), new RandomNumberGenerateStrategy()));
         }
 
         return gameRoundResults;
