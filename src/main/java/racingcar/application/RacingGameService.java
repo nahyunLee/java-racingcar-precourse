@@ -1,18 +1,17 @@
 package racingcar.application;
 
+import racingcar.domain.CarNames;
 import racingcar.domain.Cars;
 import racingcar.domain.GameResult;
-import racingcar.domain.GameRoundResult;
+import racingcar.domain.GameRoundResults;
 import racingcar.domain.strategy.CarMovingStrategy;
 import racingcar.domain.strategy.RandomNumberGenerateStrategy;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
-import static racingcar.presentation.CarViewConstants.CAR_NAME_SPLITTER;
 import static racingcar.application.ValidService.validCarsNameAnswer;
 import static racingcar.application.ValidService.validRoundNumberAnswer;
+import static racingcar.presentation.CarViewConstants.CAR_NAME_SPLITTER;
 
 public class RacingGameService {
 
@@ -22,20 +21,22 @@ public class RacingGameService {
 
         Cars cars = createCars(carsNameAnswer);
 
-        List<GameRoundResult> gameRoundResults = this.playGameRounds(cars, Integer.parseInt(roundNumberAnswer));
+        GameRoundResults gameRoundResults = this.playGameRounds(cars, Integer.parseInt(roundNumberAnswer));
 
         return GameResult.createGameResult(gameRoundResults, cars.getWinnerCarNames());
     }
 
     Cars createCars(String carsNameAnswer) {
-        String[] carNames = carsNameAnswer.split(CAR_NAME_SPLITTER);
-        return Cars.createCarsWithNames(Arrays.asList(carNames));
+        String[] carNamesSplit = carsNameAnswer.split(CAR_NAME_SPLITTER);
+        CarNames carNames = CarNames.createCarNames(Arrays.asList(carNamesSplit));
+
+        return Cars.createCarsWithNames(carNames);
     }
 
-    private List<GameRoundResult> playGameRounds(Cars cars, int roundCount) {
-        List<GameRoundResult> gameRoundResults = new ArrayList<>();
+    private GameRoundResults playGameRounds(Cars cars, int roundCount) {
+        GameRoundResults gameRoundResults = GameRoundResults.createEmptyGameRoundResults();
         for (int i = 0; i < roundCount; i++) {
-            gameRoundResults.add(cars.carsPlayRound(new CarMovingStrategy(), new RandomNumberGenerateStrategy()));
+            gameRoundResults.addGameRoundResult(cars.carsPlayRound(new CarMovingStrategy(), new RandomNumberGenerateStrategy()));
         }
 
         return gameRoundResults;

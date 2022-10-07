@@ -16,8 +16,8 @@ public class Cars {
         this.cars = cars;
     }
 
-    public static Cars createCarsWithNames(List<String> carNames) {
-        validCarsSize(carNames.size());
+    public static Cars createCarsWithNames(CarNames carNames) {
+        validCarsSize(carNames.getSize());
 
         return new Cars(createCarList(carNames));
     }
@@ -34,10 +34,10 @@ public class Cars {
         }
     }
 
-    private static List<Car> createCarList(List<String> carNames) {
+    private static List<Car> createCarList(CarNames carNames) {
         List<Car> createdCares = new ArrayList<>();
 
-        for (String carName : carNames) {
+        for (String carName : carNames.getCarNames()) {
             createdCares.add(Car.createCar(carName));
         }
         return createdCares;
@@ -55,7 +55,7 @@ public class Cars {
         return GameRoundResult.createGameRoundResult(playedOneRoundResultMap);
     }
 
-    public List<String> getWinnerCarNames() {
+    public CarNames getWinnerCarNames() {
         List<String> winnerCars = new ArrayList<>();
         int maxPosition = this.getMaxPosition();
 
@@ -65,7 +65,7 @@ public class Cars {
             }
         }
 
-        return winnerCars;
+        return CarNames.createCarNames(winnerCars);
     }
 
     private int getMaxPosition() {

@@ -98,7 +98,7 @@ public class CarsTest {
         Cars cars = Cars.createCarsWithCarList(Arrays.asList(car1, car2, car3));
 
         //when
-        List<String> winnerCarNames = cars.getWinnerCarNames();
+        List<String> winnerCarNames = cars.getWinnerCarNames().getCarNames();
 
         //then
         assertAll(

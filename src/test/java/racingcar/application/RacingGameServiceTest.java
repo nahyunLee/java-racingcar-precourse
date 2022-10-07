@@ -51,6 +51,6 @@ class RacingGameServiceTest {
         GameResult gameResult = racingGameService.startGame(carsNameString, roundNumberAnswer);
 
         //then
-        assertThat(gameResult.getGameRoundResultList()).hasSize(3);
+        assertThat(gameResult.getGameRoundResults().getGameRoundResults()).hasSize(3);
     }
 }

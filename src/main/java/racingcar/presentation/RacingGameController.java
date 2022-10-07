@@ -3,8 +3,8 @@ package racingcar.presentation;
 import racingcar.application.RacingGameService;
 import racingcar.domain.GameResult;
 import racingcar.domain.GameRoundResult;
+import racingcar.domain.GameRoundResults;
 
-import java.util.List;
 import java.util.Map;
 
 import static racingcar.presentation.View.*;
@@ -19,12 +19,12 @@ public class RacingGameController {
         GameResult gameResult = racingGameService.startGame(carsNameAnswer, roundNumberAnswer);
 
         printResultInformation();
-        printGameRoundResults(gameResult.getGameRoundResultList());
+        printGameRoundResults(gameResult.getGameRoundResults());
         printWinner(gameResult.getWinnerCars());
     }
 
-    private void printGameRoundResults(List<GameRoundResult> gameRoundResults) {
-        for (GameRoundResult gameRoundResult : gameRoundResults) {
+    private void printGameRoundResults(GameRoundResults gameRoundResults) {
+        for (GameRoundResult gameRoundResult : gameRoundResults.getGameRoundResults()) {
             printGameRoundResult(gameRoundResult.getGameRoundResultMap());
             printNewLine();
         }

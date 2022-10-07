@@ -5,23 +5,23 @@ import java.util.List;
 
 public class GameResult {
 
-    private List<GameRoundResult> gameRoundResultList;
-    private List<String> winnerCarNames;
+    private GameRoundResults gameRoundResults;
+    private CarNames winnerCarNames;
 
-    private GameResult(List<GameRoundResult> gameRoundResultList, List<String> winnerCarNames) {
-        this.gameRoundResultList = gameRoundResultList;
+    private GameResult(GameRoundResults gameRoundResults, CarNames winnerCarNames) {
+        this.gameRoundResults = gameRoundResults;
         this.winnerCarNames = winnerCarNames;
     }
 
-    public static GameResult createGameResult(List<GameRoundResult> gameRoundResultList, List<String> winnerCars) {
+    public static GameResult createGameResult(GameRoundResults gameRoundResultList, CarNames winnerCars) {
         return new GameResult(gameRoundResultList, winnerCars);
     }
 
-    public List<GameRoundResult> getGameRoundResultList() {
-        return Collections.unmodifiableList(gameRoundResultList);
+    public GameRoundResults getGameRoundResults() {
+        return gameRoundResults;
     }
 
-    public List<String> getWinnerCars() {
-        return Collections.unmodifiableList(winnerCarNames);
+    public CarNames getWinnerCars() {
+        return winnerCarNames;
     }
 }

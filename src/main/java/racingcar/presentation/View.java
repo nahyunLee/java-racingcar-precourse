@@ -1,6 +1,6 @@
 package racingcar.presentation;
 
-import java.util.List;
+import racingcar.domain.CarNames;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static racingcar.presentation.CarViewConstants.CAR_NAME_SPLITTER;
@@ -27,9 +27,9 @@ public class View {
         System.out.println(carName + " : " + carPositionView.toString());
     }
 
-    public static void printWinner(List<String> winnerNames) {
+    public static void printWinner(CarNames winnerNames) {
         StringBuilder winnerNameBuilder = new StringBuilder();
-        for (String carName : winnerNames) {
+        for (String carName : winnerNames.getCarNames()) {
             winnerNameBuilder.append(carName);
             winnerNameBuilder.append(CAR_NAME_SPLITTER);
         }

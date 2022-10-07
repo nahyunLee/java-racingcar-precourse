@@ -5,7 +5,10 @@ import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
-import java.util.*;
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static racingcar.domain.Fixtures.car1;
@@ -13,27 +16,27 @@ import static racingcar.domain.Fixtures.car2;
 
 public class GameResultTest {
 
-    private List<GameRoundResult> gameRoundResults;
-    private List<String> winnerCarNames;
+    private GameRoundResults gameRoundResults;
+    private CarNames winnerCarNames;
 
     @BeforeEach
     private void playGame() {
         Car car1 = car1();
         Car car2 = car2();
 
+        gameRoundResults = GameRoundResults.createEmptyGameRoundResults();
+
         Map<String, Integer> firstRoundResultMap = new HashMap<>();
         firstRoundResultMap.put(car1.getName(), 1);
         firstRoundResultMap.put(car2.getName(), 0);
-        GameRoundResult firstRoundResult = GameRoundResult.createGameRoundResult(firstRoundResultMap);
+        gameRoundResults.addGameRoundResult(GameRoundResult.createGameRoundResult(firstRoundResultMap));
 
         Map<String, Integer> secondRoundResultMap = new HashMap<>();
         secondRoundResultMap.put(car1.getName(), 2);
         secondRoundResultMap.put(car2.getName(), 0);
-        GameRoundResult secondRoundResult = GameRoundResult.createGameRoundResult(secondRoundResultMap);
+        gameRoundResults.addGameRoundResult(GameRoundResult.createGameRoundResult(secondRoundResultMap));
 
-        gameRoundResults = Arrays.asList(firstRoundResult, secondRoundResult);
-
-        winnerCarNames = Collections.singletonList(car1.getName());
+        winnerCarNames = CarNames.createCarNames(Collections.singletonList(car1.getName()));
     }
 
     @Test
@@ -47,7 +50,7 @@ public class GameResultTest {
     void test_modifyGameRoundResults() {
         //given
         GameResult gameResult = GameResult.createGameResult(gameRoundResults, winnerCarNames);
-        List<GameRoundResult> gameRoundResultList = gameResult.getGameRoundResultList();
+        List<GameRoundResult> gameRoundResultList = gameResult.getGameRoundResults().getGameRoundResults();
 
         //when then
         assertThatThrownBy(() -> gameRoundResultList.get(0).getGameRoundResultMap().put("car3", 1))
@@ -59,7 +62,7 @@ public class GameResultTest {
     void test_modifyGameWinners() {
         //given
         GameResult gameResult = GameResult.createGameResult(gameRoundResults, winnerCarNames);
-        List<String> gameWinners = gameResult.getWinnerCars();
+        List<String> gameWinners = gameResult.getWinnerCars().getCarNames();
 
         //when then
         assertThatThrownBy(() -> gameWinners.add("car3"))
