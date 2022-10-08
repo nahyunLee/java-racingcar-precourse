@@ -19,11 +19,6 @@ import static racingcar.domain.Fixtures.car1;
 import static racingcar.domain.Fixtures.car2;
 
 public class CarsTest {
-    //메세지
-    //자동차 리스트로 일급컬렉션 Cars를 생성할 수 있다.
-    //자동차 리스트가 비어있는 일급컬렉션 Cars는 생성할 수 없다.
-    //게임 라운드가 시작되면 차들을 이동시킨다.
-    //게임 최종 우승자를 반환한다.
 
     @Test
     @DisplayName("자동차 리스트로 일급컬렉션 Cars를 생성한다.")

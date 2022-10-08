@@ -13,10 +13,6 @@ import static org.junit.jupiter.api.Assertions.assertAll;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class GameRoundResultTest {
-    //메세지
-    //각 게임 라운드의 결과의 정보를 반환한다.
-    //각 게임 라운드에 참가한 자동차의 이름과 그 자동차의 위치를 나타낸다
-    //이미 끝난 게임의 라운드이므로 반환받은 결과를 수정할 수 없다.
 
     private CarName car1Name = CarName.createCarName("car1");
     private CarName car2Name = CarName.createCarName("car2");

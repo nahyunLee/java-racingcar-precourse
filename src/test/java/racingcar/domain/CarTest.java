@@ -7,12 +7,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class CarTest {
-    //메세지 정의
-    //자동차 이름으로 자동차를 생성한다.
-    //자동차 이름으로 자동차를 생성하면 거리는 0인 상태로 생성된다.
-    //자동차 이름의 5자 이하가 아니라면 유효성 체크에 통과하지 못한다. (자동차 이름은 사용자 입력과는 상관없이 자동차의 속성이므로 자동차가 체크한다)
-    //자동차가 움직임 상태라면 거리가 1증가한다.
-    //자동차가 정지 상태라면 거리가 증가하지 않는다.
 
     @Test
     @DisplayName("자동차 이름으로 자동차를 생성한다.")

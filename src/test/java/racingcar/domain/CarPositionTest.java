@@ -7,11 +7,6 @@ import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 class CarPositionTest {
-    //메세지
-    //자동차의 움직인 거리를 생성할 때는 거리 0부터 시작한다.
-    //자동차의 움직인 거리는 0이상이어야 한다.
-    //자동차의 움직인 거리가 n만큼 증가할 수 있다.
-    //자동차 경주게임이므로 후진할 수 없다.
 
     @Test
     @DisplayName("자동차의 움직인 거리를 생성할 때는 거리 0부터 시작한다.")
