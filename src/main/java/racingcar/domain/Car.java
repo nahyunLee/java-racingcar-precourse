@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import static racingcar.domain.ErrorMessage.CAR_NAME_SIZE;
+
 public class Car {
 
     private static final int CAR_NAME_MAX_LENGTH = 5;
@@ -21,7 +23,7 @@ public class Car {
 
     private static void validCarName(String name) {
         if (name.length() > CAR_NAME_MAX_LENGTH) {
-            throw new IllegalArgumentException("자동차의 이름은 5자 이하만 가능합니다.");
+            throw new IllegalArgumentException(CAR_NAME_SIZE);
         }
     }
 

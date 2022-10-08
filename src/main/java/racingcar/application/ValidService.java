@@ -1,6 +1,7 @@
 package racingcar.application;
 
 import static java.lang.String.format;
+import static racingcar.domain.ErrorMessage.*;
 import static racingcar.presentation.CarViewConstants.CAR_NAME_SPLITTER;
 
 public class ValidService {
@@ -8,7 +9,7 @@ public class ValidService {
     public static void validCarsNameAnswer(String carNameAnswer) {
         String lastString = Character.toString(carNameAnswer.charAt(carNameAnswer.length() - 1));
         if (CAR_NAME_SPLITTER.equals(lastString)) {
-            throw new IllegalArgumentException(format("자동차들의 이름은 쉼표(%s)로 구분되어야 합니다.", CAR_NAME_SPLITTER));
+            throw new IllegalArgumentException(format(CARS_NAME_SPLITTER, CAR_NAME_SPLITTER));
         }
     }
 
@@ -21,13 +22,13 @@ public class ValidService {
         try {
             Integer.parseInt(roundNumberAnswer);
         } catch (NumberFormatException e) {
-            throw new IllegalArgumentException("시도할 횟수는 숫자만 입력 가능합니다.");
+            throw new IllegalArgumentException(ROUND_ONLY_NUMBER);
         }
     }
 
     private static void validNumberRange(String roundNumberAnswer) {
         if (Integer.parseInt(roundNumberAnswer) <= 0) {
-            throw new IllegalArgumentException("시도할 횟수는 1번 이상이어야 합니다.");
+            throw new IllegalArgumentException(ROUND_NUMBER_OVER_ONE);
         }
     }
 }

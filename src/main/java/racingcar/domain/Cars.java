@@ -8,6 +8,8 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 
+import static racingcar.domain.ErrorMessage.CARS_SIZE;
+
 public class Cars {
 
     private List<Car> cars;
@@ -30,7 +32,7 @@ public class Cars {
 
     private static void validCarsSize(int size) {
         if (size < 2) {
-            throw new IllegalArgumentException("자동차는 최소 2대가 필요합니다.");
+            throw new IllegalArgumentException(CARS_SIZE);
         }
     }
 

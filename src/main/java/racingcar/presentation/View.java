@@ -3,18 +3,18 @@ package racingcar.presentation;
 import racingcar.domain.CarNames;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
-import static racingcar.presentation.CarViewConstants.CAR_NAME_SPLITTER;
-import static racingcar.presentation.CarViewConstants.CAR_POSITION_VIEW;
+import static java.lang.String.format;
+import static racingcar.presentation.CarViewConstants.*;
 
 public class View {
 
     public static String getCarsNameAnswer() {
-        System.out.println("경주할 자동차 이름(이름은 쉼표(,) 기준으로 구분)");
+        System.out.println(CAR_NAME_QUESTION);
         return readLine();
     }
 
     public static String getRoundNumberAnswer() {
-        System.out.println("시도할 회수는 몇회인가요?");
+        System.out.println(ROUND_NUMBER_QUESTION);
         return readLine();
     }
 
@@ -24,7 +24,7 @@ public class View {
             carPositionView.append(CAR_POSITION_VIEW);
         }
 
-        System.out.println(carName + " : " + carPositionView.toString());
+        System.out.println(format("%s %s %s", carName, COLON, carPositionView.toString()));
     }
 
     public static void printWinner(CarNames winnerNames) {
@@ -34,11 +34,11 @@ public class View {
             winnerNameBuilder.append(CAR_NAME_SPLITTER);
         }
 
-        System.out.println("최종 우승자 : " + removeLastSplitter(winnerNameBuilder.toString()));
+        System.out.println(format("%s %s %s",WINNER,COLON, removeLastSplitter(winnerNameBuilder.toString())));
     }
 
     public static void printErrorMessage(String errorMessage) {
-        System.out.println("[ERROR]" + errorMessage);
+        System.out.println(ERROR_MESSAGE + errorMessage);
     }
 
     private static String removeLastSplitter(String winner) {
@@ -46,7 +46,7 @@ public class View {
     }
 
     public static void printResultInformation() {
-        System.out.println("실행 결과");
+        System.out.println(GAME_RESULT);
     }
 
     public static void printNewLine() {

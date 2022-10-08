@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import static racingcar.domain.ErrorMessage.MOVE_ONLY_FORWARD;
+
 public class CarPosition {
 
     private int position;
@@ -19,7 +21,7 @@ public class CarPosition {
 
     private void validMoveDistance(int moveDistance) {
         if (moveDistance < 0) {
-            throw new IllegalStateException("경주게임에서는 후진할 수 없습니다.");
+            throw new IllegalStateException(MOVE_ONLY_FORWARD);
         }
     }
 
