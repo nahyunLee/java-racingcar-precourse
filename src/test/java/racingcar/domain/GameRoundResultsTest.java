@@ -27,9 +27,9 @@ class GameRoundResultsTest {
         //given
         GameRoundResults gameRoundResults = GameRoundResults.createEmptyGameRoundResults();
 
-        Map<String, Integer> playedOneRoundResultMap = new HashMap<>();
-        playedOneRoundResultMap.put("car1", 1);
-        playedOneRoundResultMap.put("car2", 0);
+        Map<CarName, CarPosition> playedOneRoundResultMap = new HashMap<>();
+        playedOneRoundResultMap.put(CarName.createCarName("car1"), CarPosition.createCarPosition(1));
+        playedOneRoundResultMap.put(CarName.createCarName("car2"), CarPosition.createCarPosition(0));
 
         //when
         gameRoundResults.addGameRoundResult(GameRoundResult.createGameRoundResult(playedOneRoundResultMap));
@@ -44,14 +44,16 @@ class GameRoundResultsTest {
         //given
         GameRoundResults gameRoundResults = GameRoundResults.createEmptyGameRoundResults();
 
-        Map<String, Integer> playedOneRoundResultMap = new HashMap<>();
-        playedOneRoundResultMap.put("car1", 1);
-        playedOneRoundResultMap.put("car2", 0);
+        Map<CarName, CarPosition> playedOneRoundResultMap = new HashMap<>();
+        playedOneRoundResultMap.put(CarName.createCarName("car1"), CarPosition.createCarPosition(1));
+        playedOneRoundResultMap.put(CarName.createCarName("car2"), CarPosition.createCarPosition(0));
 
         gameRoundResults.addGameRoundResult(GameRoundResult.createGameRoundResult(playedOneRoundResultMap));
 
         //when then
-        assertThatThrownBy(() -> gameRoundResults.getGameRoundResults().get(0).getGameRoundResultMap().replace("car1", 3))
+        assertThatThrownBy(
+                () -> gameRoundResults.getGameRoundResults().get(0).getGameRoundResultMap()
+                        .replace(CarName.createCarName("car1"), CarPosition.createCarPosition(3)))
                 .isInstanceOf(UnsupportedOperationException.class);
     }
 }

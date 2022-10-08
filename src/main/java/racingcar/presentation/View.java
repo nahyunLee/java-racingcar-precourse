@@ -1,6 +1,8 @@
 package racingcar.presentation;
 
+import racingcar.domain.CarName;
 import racingcar.domain.CarNames;
+import racingcar.domain.CarPosition;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static java.lang.String.format;
@@ -18,19 +20,19 @@ public class View {
         return readLine();
     }
 
-    public static void printCarNameWithPosition(String carName, int carPosition) {
+    public static void printCarNameWithPosition(CarName carName, CarPosition carPosition) {
         StringBuilder carPositionView = new StringBuilder();
-        for (int i = 0; i < carPosition; i++) {
+        for (int i = 0; i < carPosition.getIntPosition(); i++) {
             carPositionView.append(CAR_POSITION_VIEW);
         }
 
-        System.out.println(format("%s %s %s", carName, COLON, carPositionView.toString()));
+        System.out.println(format("%s %s %s", carName.getCarName(), COLON, carPositionView.toString()));
     }
 
     public static void printWinner(CarNames winnerNames) {
         StringBuilder winnerNameBuilder = new StringBuilder();
-        for (String carName : winnerNames.getCarNames()) {
-            winnerNameBuilder.append(carName);
+        for (CarName carName : winnerNames.getCarNames()) {
+            winnerNameBuilder.append(carName.getCarName());
             winnerNameBuilder.append(CAR_NAME_SPLITTER);
         }
 

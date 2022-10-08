@@ -58,8 +58,8 @@ public class CarsTest {
 
         //then
         assertAll(
-                () -> assertThat(car1().getPosition()).isBetween(0, 1),
-                () -> assertThat(car2().getPosition()).isBetween(0, 1)
+                () -> assertThat(car1().getPosition().getIntPosition()).isBetween(0, 1),
+                () -> assertThat(car2().getPosition().getIntPosition()).isBetween(0, 1)
         );
     }
 
@@ -71,11 +71,10 @@ public class CarsTest {
         GameRoundResult gameRoundResult = cars.carsPlayRound(new CarMovingStrategy(), new RandomNumberGenerateStrategy());
 
         //when
-        Map<String, Integer> playedOneRoundResultMap = gameRoundResult.getGameRoundResultMap();
+        Map<CarName, CarPosition> playedOneRoundResultMap = gameRoundResult.getGameRoundResultMap();
         //then
         assertAll(
-                () -> assertThat(playedOneRoundResultMap.get(car1().getName())).isBetween(0, 1),
-                () -> assertThat(playedOneRoundResultMap.get(car2().getName())).isBetween(0, 1)
+                () -> assertThat(playedOneRoundResultMap.size()).isEqualTo(2)
         );
     }
 
@@ -98,7 +97,7 @@ public class CarsTest {
         Cars cars = Cars.createCarsWithCarList(Arrays.asList(car1, car2, car3));
 
         //when
-        List<String> winnerCarNames = cars.getWinnerCarNames().getCarNames();
+        List<CarName> winnerCarNames = cars.getWinnerCarNames().getCarNames();
 
         //then
         assertAll(

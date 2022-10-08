@@ -24,7 +24,7 @@ public class RacingGameService {
         validCarsNameAnswer(carsNameAnswer);
 
         String[] carNamesSplit = carsNameAnswer.split(CAR_NAME_SPLITTER);
-        CarNames carNames = CarNames.createCarNames(Arrays.asList(carNamesSplit));
+        CarNames carNames = CarNames.createCarNamesWithStringCarName(Arrays.asList(carNamesSplit));
 
         return Cars.createCarsWithNames(carNames);
     }

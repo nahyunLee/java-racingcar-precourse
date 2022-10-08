@@ -31,12 +31,12 @@ class RacingGameServiceTest {
 
         //then
         assertAll(
-                () -> assertThat(carList.get(0).getName()).isEqualTo("하나"),
-                () -> assertThat(carList.get(0).getPosition()).isEqualTo(0),
-                () -> assertThat(carList.get(1).getName()).isEqualTo("둘"),
-                () -> assertThat(carList.get(1).getPosition()).isEqualTo(0),
-                () -> assertThat(carList.get(2).getName()).isEqualTo("셋"),
-                () -> assertThat(carList.get(2).getPosition()).isEqualTo(0)
+                () -> assertThat(carList.get(0).getName().getCarName()).isEqualTo("하나"),
+                () -> assertThat(carList.get(0).getPosition().getIntPosition()).isEqualTo(0),
+                () -> assertThat(carList.get(1).getName().getCarName()).isEqualTo("둘"),
+                () -> assertThat(carList.get(1).getPosition().getIntPosition()).isEqualTo(0),
+                () -> assertThat(carList.get(2).getName().getCarName()).isEqualTo("셋"),
+                () -> assertThat(carList.get(2).getPosition().getIntPosition()).isEqualTo(0)
         );
     }
 

@@ -39,14 +39,14 @@ public class Cars {
     private static List<Car> createCarList(CarNames carNames) {
         List<Car> createdCares = new ArrayList<>();
 
-        for (String carName : carNames.getCarNames()) {
-            createdCares.add(Car.createCar(carName));
+        for (CarName carName : carNames.getCarNames()) {
+            createdCares.add(Car.createCar(carName.getCarName()));
         }
         return createdCares;
     }
 
     public GameRoundResult carsPlayRound(MovingStrategy movingStrategy, NumberGenerateStrategy numberGenerateStrategy) {
-        HashMap<String, Integer> playedOneRoundResultMap = new HashMap<>();
+        HashMap<CarName, CarPosition> playedOneRoundResultMap = new HashMap<>();
 
         for (Car car : cars) {
             CarStatus carStatus = movingStrategy.playRound(numberGenerateStrategy.generateNumber());
@@ -58,26 +58,26 @@ public class Cars {
     }
 
     public CarNames getWinnerCarNames() {
-        List<String> winnerCars = new ArrayList<>();
-        int maxPosition = this.getMaxPosition();
+        List<CarName> winnerCars = new ArrayList<>();
+        CarPosition maxPosition = this.getMaxPosition();
 
         for (Car car : cars) {
-            if (car.getPosition() == maxPosition) {
+            if (car.getPosition().isEquals(maxPosition)) {
                 winnerCars.add(car.getName());
             }
         }
 
-        return CarNames.createCarNames(winnerCars);
+        return CarNames.createCarNamesWithCarName(winnerCars);
     }
 
-    private int getMaxPosition() {
+    private CarPosition getMaxPosition() {
         int maxPosition = 0;
 
         for (Car car : cars) {
-            maxPosition = Math.max(maxPosition, car.getPosition());
+            maxPosition = Math.max(maxPosition, car.getPosition().getIntPosition());
         }
 
-        return maxPosition;
+        return CarPosition.createCarPosition(maxPosition);
     }
 
     public List<Car> getCars() {

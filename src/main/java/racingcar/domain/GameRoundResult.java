@@ -5,17 +5,17 @@ import java.util.Map;
 
 public class GameRoundResult {
 
-    private Map<String, Integer> playedOneRoundResultMap;
+    private Map<CarName, CarPosition> playedOneRoundResultMap;
 
-    private GameRoundResult(Map<String, Integer> playedOneRoundResultMap) {
+    private GameRoundResult(Map<CarName, CarPosition> playedOneRoundResultMap) {
         this.playedOneRoundResultMap = playedOneRoundResultMap;
     }
 
-    public static GameRoundResult createGameRoundResult(Map<String, Integer> playedOneRoundResultMap) {
+    public static GameRoundResult createGameRoundResult(Map<CarName, CarPosition> playedOneRoundResultMap) {
         return new GameRoundResult(playedOneRoundResultMap);
     }
 
-    public Map<String, Integer> getGameRoundResultMap() {
+    public Map<CarName, CarPosition> getGameRoundResultMap() {
         return Collections.unmodifiableMap(playedOneRoundResultMap);
     }
 }

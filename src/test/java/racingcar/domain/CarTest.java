@@ -4,7 +4,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 
 import static org.assertj.core.api.Assertions.assertThat;
-import static org.assertj.core.api.Assertions.assertThatThrownBy;
 import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class CarTest {
@@ -35,19 +34,7 @@ public class CarTest {
         Car car = Car.createCar(carName);
 
         //then
-        assertThat(car.getPosition()).isEqualTo(0);
-    }
-
-    @Test
-    @DisplayName("자동차의 이름이 5자 초과라면 IllegalArgumentException을 반환한다.")
-    void validCarName() {
-        //given
-        String carName = "5자_이상인_이름";
-
-        //when then
-        assertThatThrownBy(() -> Car.createCar(carName))
-                .isInstanceOf(IllegalArgumentException.class)
-                .hasMessageContaining("자동차의 이름은 5자 이하만 가능합니다.");
+        assertThat(car.getPosition().getIntPosition()).isEqualTo(0);
     }
 
     @Test
@@ -60,7 +47,7 @@ public class CarTest {
         car.playRound(CarStatus.MOVE);
 
         //then
-        assertThat(car.getPosition()).isEqualTo(1);
+        assertThat(car.getPosition().getIntPosition()).isEqualTo(1);
     }
 
     @Test
@@ -73,7 +60,7 @@ public class CarTest {
         car.playRound(CarStatus.STOP);
 
         //then
-        assertThat(car.getPosition()).isEqualTo(0);
+        assertThat(car.getPosition().getIntPosition()).isEqualTo(0);
     }
 
     @Test
@@ -84,7 +71,7 @@ public class CarTest {
         Car car = Car.createCar(name);
 
         //when
-        String carName = car.getName();
+        String carName = car.getName().getCarName();
 
         //then
         assertThat(carName).isEqualTo(name);

@@ -10,8 +10,12 @@ public class CarPosition {
         this.position = position;
     }
 
-    public static CarPosition createCarPosition() {
+    public static CarPosition createNewCarPosition() {
         return new CarPosition(0);
+    }
+
+    public static CarPosition createCarPosition(int position) {
+        return new CarPosition(position);
     }
 
     public void move(int moveDistance) {
@@ -25,7 +29,11 @@ public class CarPosition {
         }
     }
 
-    public int getPosition() {
+    public int getIntPosition() {
         return position;
+    }
+
+    public boolean isEquals(CarPosition carPosition) {
+        return position == carPosition.getIntPosition();
     }
 }

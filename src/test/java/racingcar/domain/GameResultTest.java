@@ -26,17 +26,17 @@ public class GameResultTest {
 
         gameRoundResults = GameRoundResults.createEmptyGameRoundResults();
 
-        Map<String, Integer> firstRoundResultMap = new HashMap<>();
-        firstRoundResultMap.put(car1.getName(), 1);
-        firstRoundResultMap.put(car2.getName(), 0);
+        Map<CarName, CarPosition> firstRoundResultMap = new HashMap<>();
+        firstRoundResultMap.put(car1.getName(), CarPosition.createCarPosition(1));
+        firstRoundResultMap.put(car2.getName(), CarPosition.createCarPosition(0));
         gameRoundResults.addGameRoundResult(GameRoundResult.createGameRoundResult(firstRoundResultMap));
 
-        Map<String, Integer> secondRoundResultMap = new HashMap<>();
-        secondRoundResultMap.put(car1.getName(), 2);
-        secondRoundResultMap.put(car2.getName(), 0);
+        Map<CarName, CarPosition> secondRoundResultMap = new HashMap<>();
+        secondRoundResultMap.put(car1.getName(), CarPosition.createCarPosition(2));
+        secondRoundResultMap.put(car2.getName(), CarPosition.createCarPosition(0));
         gameRoundResults.addGameRoundResult(GameRoundResult.createGameRoundResult(secondRoundResultMap));
 
-        winnerCarNames = CarNames.createCarNames(Collections.singletonList(car1.getName()));
+        winnerCarNames = CarNames.createCarNamesWithCarName(Collections.singletonList(car1.getName()));
     }
 
     @Test
@@ -53,7 +53,9 @@ public class GameResultTest {
         List<GameRoundResult> gameRoundResultList = gameResult.getGameRoundResults().getGameRoundResults();
 
         //when then
-        assertThatThrownBy(() -> gameRoundResultList.get(0).getGameRoundResultMap().put("car3", 1))
+        assertThatThrownBy(
+                () -> gameRoundResultList.get(0).getGameRoundResultMap()
+                        .put(CarName.createCarName("car3"), CarPosition.createCarPosition(1)))
                 .isInstanceOf(UnsupportedOperationException.class);
     }
 
@@ -62,10 +64,10 @@ public class GameResultTest {
     void test_modifyGameWinners() {
         //given
         GameResult gameResult = GameResult.createGameResult(gameRoundResults, winnerCarNames);
-        List<String> gameWinners = gameResult.getWinnerCars().getCarNames();
+        List<CarName> gameWinners = gameResult.getWinnerCars().getCarNames();
 
         //when then
-        assertThatThrownBy(() -> gameWinners.add("car3"))
+        assertThatThrownBy(() -> gameWinners.add(CarName.createCarName("car3")))
                 .isInstanceOf(UnsupportedOperationException.class);
     }
 }

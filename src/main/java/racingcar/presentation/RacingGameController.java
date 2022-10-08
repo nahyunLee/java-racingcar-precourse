@@ -1,10 +1,7 @@
 package racingcar.presentation;
 
 import racingcar.application.RacingGameService;
-import racingcar.domain.Cars;
-import racingcar.domain.GameResult;
-import racingcar.domain.GameRoundResult;
-import racingcar.domain.GameRoundResults;
+import racingcar.domain.*;
 
 import java.util.Map;
 
@@ -65,8 +62,8 @@ public class RacingGameController {
         }
     }
 
-    private void printGameRoundResult(Map<String, Integer> gameRoundResultMap) {
-        for (String carName : gameRoundResultMap.keySet()) {
+    private void printGameRoundResult(Map<CarName, CarPosition> gameRoundResultMap) {
+        for (CarName carName : gameRoundResultMap.keySet()) {
             printCarNameWithPosition(carName, gameRoundResultMap.get(carName));
         }
     }

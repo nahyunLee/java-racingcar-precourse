@@ -13,8 +13,8 @@ import static org.junit.jupiter.api.Assertions.*;
 class CarNamesTest {
 
     @Test
-    @DisplayName("자동차둘의 이름이 담긴 일급컬렉션을 생성한다.")
-    void test_createWinnerCarNames() {
+    @DisplayName("자동차들의 문자열 이름이 담긴 일급컬렉션을 생성한다.")
+    void test_createWinnerStringCarNames() {
         //given
         String winner1 = "car1";
         String winner2 = "car2";
@@ -22,7 +22,26 @@ class CarNamesTest {
         List<String> carNameList = Arrays.asList(winner1, winner2);
 
         //when
-        CarNames carNames = CarNames.createCarNames(carNameList);
+        CarNames carNames = CarNames.createCarNamesWithStringCarName(carNameList);
+
+        //then
+        assertAll(
+                () -> assertThat(carNames.getCarNames().get(0).isEquals(CarName.createCarName(winner1))).isTrue(),
+                () -> assertThat(carNames.getCarNames().get(1).isEquals(CarName.createCarName(winner2))).isTrue()
+        );
+    }
+
+    @Test
+    @DisplayName("자동차들의 이름이 담긴 일급컬렉션을 생성한다.")
+    void test_createWinnerCarNames() {
+        //given
+        CarName winner1 = CarName.createCarName("car1");
+        CarName winner2 = CarName.createCarName("car2");
+
+        List<CarName> carNameList = Arrays.asList(winner1, winner2);
+
+        //when
+        CarNames carNames = CarNames.createCarNamesWithCarName(carNameList);
 
         //then
         assertAll(
@@ -38,13 +57,13 @@ class CarNamesTest {
         String winner1 = "car1";
         String winner2 = "car2";
 
-        CarNames carNames = CarNames.createCarNames(Arrays.asList(winner1, winner2));
+        CarNames carNames = CarNames.createCarNamesWithStringCarName(Arrays.asList(winner1, winner2));
 
         //when
-        List<String> carNameList = carNames.getCarNames();
+        List<CarName> carNameList = carNames.getCarNames();
 
         //then
-        assertThatThrownBy(() -> carNameList.add("car3"))
+        assertThatThrownBy(() -> carNameList.add(CarName.createCarName("car3")))
                 .isInstanceOf(UnsupportedOperationException.class);
     }
 }

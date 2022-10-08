@@ -9,7 +9,8 @@ import java.util.Map;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.assertj.core.api.Assertions.assertThatThrownBy;
-import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertAll;
+import static org.junit.jupiter.api.Assertions.assertDoesNotThrow;
 
 public class GameRoundResultTest {
     //메세지
@@ -17,11 +18,11 @@ public class GameRoundResultTest {
     //각 게임 라운드에 참가한 자동차의 이름과 그 자동차의 위치를 나타낸다
     //이미 끝난 게임의 라운드이므로 반환받은 결과를 수정할 수 없다.
 
-    private String car1Name = "car1";
-    private String car2Name = "car2";
-    private int car1Position = 3;
-    private int car2Position = 4;
-    private Map<String, Integer> playedOneRoundResultMap;
+    private CarName car1Name = CarName.createCarName("car1");
+    private CarName car2Name = CarName.createCarName("car2");
+    private CarPosition car1Position = CarPosition.createCarPosition(3);
+    private CarPosition car2Position = CarPosition.createCarPosition(4);
+    private Map<CarName, CarPosition> playedOneRoundResultMap;
 
     @BeforeEach
     private void setPlayOneRound() {
@@ -45,7 +46,7 @@ public class GameRoundResultTest {
         GameRoundResult gameRoundResult = GameRoundResult.createGameRoundResult(playedOneRoundResultMap);
 
         //when
-        Map<String, Integer> gameRoundResultMap = gameRoundResult.getGameRoundResultMap();
+        Map<CarName, CarPosition> gameRoundResultMap = gameRoundResult.getGameRoundResultMap();
 
         //then
         assertAll(
@@ -61,10 +62,10 @@ public class GameRoundResultTest {
         GameRoundResult gameRoundResult = GameRoundResult.createGameRoundResult(playedOneRoundResultMap);
 
         //when
-        Map<String, Integer> gameRoundResultMap = gameRoundResult.getGameRoundResultMap();
+        Map<CarName, CarPosition> gameRoundResultMap = gameRoundResult.getGameRoundResultMap();
 
         //then
-        assertThatThrownBy(() -> gameRoundResultMap.replace(car1Name, 10))
+        assertThatThrownBy(() -> gameRoundResultMap.replace(car1Name, CarPosition.createCarPosition(10)))
                 .isInstanceOf(UnsupportedOperationException.class);
     }
 }

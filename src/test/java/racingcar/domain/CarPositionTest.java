@@ -17,24 +17,24 @@ class CarPositionTest {
     @DisplayName("자동차의 움직인 거리를 생성할 때는 거리 0부터 시작한다.")
     void createCarPosition() {
         //when
-        CarPosition carPosition = CarPosition.createCarPosition();
+        CarPosition carPosition = CarPosition.createNewCarPosition();
 
         //then
-        assertThat(carPosition.getPosition()).isEqualTo(0);
+        assertThat(carPosition.getIntPosition()).isEqualTo(0);
     }
 
     @Test
     @DisplayName("자동차의 움직인 거리가 n만큼 증가한다.")
     void moveNDistance() {
         //when
-        CarPosition carPosition = CarPosition.createCarPosition();
+        CarPosition carPosition = CarPosition.createNewCarPosition();
         int moveDistance = 1;
 
         //when
         carPosition.move(moveDistance);
 
         //then
-        assertThat(carPosition.getPosition()).isEqualTo(moveDistance);
+        assertThat(carPosition.getIntPosition()).isEqualTo(moveDistance);
     }
 
 
@@ -42,7 +42,7 @@ class CarPositionTest {
     @DisplayName("자동차의 움직일 거리가 0보다 작으면 IllegalStateException을 반환한다.")
     void inValidMoveDistance() {
         //given
-        CarPosition carPosition = CarPosition.createCarPosition();
+        CarPosition carPosition = CarPosition.createNewCarPosition();
         int moveDistance = -101;
 
         //when then
@@ -55,13 +55,13 @@ class CarPositionTest {
     @DisplayName("자동차의 현재 움직인 거리를 반환한다.")
     void test_getPosition() {
         //given
-        CarPosition carPosition = CarPosition.createCarPosition();
+        CarPosition carPosition = CarPosition.createNewCarPosition();
         int moveDistance = 5;
 
         //when
         carPosition.move(moveDistance);
 
         //then
-        assertThat(carPosition.getPosition()).isEqualTo(moveDistance);
+        assertThat(carPosition.getIntPosition()).isEqualTo(moveDistance);
     }
 }
