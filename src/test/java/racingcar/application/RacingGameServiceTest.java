@@ -48,7 +48,7 @@ class RacingGameServiceTest {
         String roundNumberAnswer = "3";
 
         //when
-        GameResult gameResult = racingGameService.startGame(carsNameString, roundNumberAnswer);
+        GameResult gameResult = racingGameService.startGame(racingGameService.createCars(carsNameString), roundNumberAnswer);
 
         //then
         assertThat(gameResult.getGameRoundResults().getGameRoundResults()).hasSize(3);

@@ -37,6 +37,10 @@ public class View {
         System.out.println("최종 우승자 : " + removeLastSplitter(winnerNameBuilder.toString()));
     }
 
+    public static void printErrorMessage(String errorMessage) {
+        System.out.println("[ERROR]" + errorMessage);
+    }
+
     private static String removeLastSplitter(String winner) {
         return winner.substring(0, winner.length() - 1);
     }

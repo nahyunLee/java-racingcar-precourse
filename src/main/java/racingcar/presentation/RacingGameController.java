@@ -1,23 +1,58 @@
 package racingcar.presentation;
 
 import racingcar.application.RacingGameService;
+import racingcar.domain.Cars;
 import racingcar.domain.GameResult;
 import racingcar.domain.GameRoundResult;
 import racingcar.domain.GameRoundResults;
 
 import java.util.Map;
 
+import static racingcar.application.ValidService.validRoundNumberAnswer;
 import static racingcar.presentation.View.*;
 
 public class RacingGameController {
 
-    public void startGame() {
-        String carsNameAnswer = getCarsNameAnswer();
-        String roundNumberAnswer = getRoundNumberAnswer();
+    private RacingGameService racingGameService;
 
-        RacingGameService racingGameService = new RacingGameService();
+    public RacingGameController(RacingGameService racingGameService) {
+        this.racingGameService = racingGameService;
+    }
+
+    public void startGame() {
+        //사용자 입력
+        Cars carsNameAnswer = this.getCarsName();
+        String roundNumberAnswer = this.getRoundNumber();
+
+        //게임 진행
         GameResult gameResult = racingGameService.startGame(carsNameAnswer, roundNumberAnswer);
 
+        //게임 결과 출력
+        printGameResult(gameResult);
+    }
+
+    private Cars getCarsName() {
+        try {
+            return racingGameService.createCars(getCarsNameAnswer());
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e.getMessage());
+            return getCarsName();
+        }
+    }
+
+    private String getRoundNumber() {
+        String roundNumberAnswer = "";
+        try {
+            roundNumberAnswer = getRoundNumberAnswer();
+            validRoundNumberAnswer(roundNumberAnswer);
+            return roundNumberAnswer;
+        } catch (IllegalArgumentException e) {
+            printErrorMessage(e.getMessage());
+            return getRoundNumberAnswer();
+        }
+    }
+
+    private void printGameResult(GameResult gameResult) {
         printResultInformation();
         printGameRoundResults(gameResult.getGameRoundResults());
         printWinner(gameResult.getWinnerCars());

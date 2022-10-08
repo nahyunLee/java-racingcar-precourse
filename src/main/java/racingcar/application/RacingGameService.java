@@ -10,23 +10,19 @@ import racingcar.domain.strategy.RandomNumberGenerateStrategy;
 import java.util.Arrays;
 
 import static racingcar.application.ValidService.validCarsNameAnswer;
-import static racingcar.application.ValidService.validRoundNumberAnswer;
 import static racingcar.presentation.CarViewConstants.CAR_NAME_SPLITTER;
 
 public class RacingGameService {
 
-    public GameResult startGame(String carsNameAnswer, String roundNumberAnswer) {
-        validCarsNameAnswer(carsNameAnswer);
-        validRoundNumberAnswer(roundNumberAnswer);
-
-        Cars cars = createCars(carsNameAnswer);
-
+    public GameResult startGame(Cars cars, String roundNumberAnswer) {
         GameRoundResults gameRoundResults = this.playGameRounds(cars, Integer.parseInt(roundNumberAnswer));
 
         return GameResult.createGameResult(gameRoundResults, cars.getWinnerCarNames());
     }
 
-    Cars createCars(String carsNameAnswer) {
+    public Cars createCars(String carsNameAnswer) {
+        validCarsNameAnswer(carsNameAnswer);
+
         String[] carNamesSplit = carsNameAnswer.split(CAR_NAME_SPLITTER);
         CarNames carNames = CarNames.createCarNames(Arrays.asList(carNamesSplit));
 
