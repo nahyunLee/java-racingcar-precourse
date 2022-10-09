@@ -1,8 +1,8 @@
 package racingcar.presentation;
 
-import racingcar.domain.CarName;
-import racingcar.domain.CarNames;
-import racingcar.domain.CarPosition;
+import racingcar.domain.car.CarName;
+import racingcar.domain.car.CarNames;
+import racingcar.domain.car.CarPosition;
 
 import static camp.nextstep.edu.missionutils.Console.readLine;
 import static java.lang.String.format;

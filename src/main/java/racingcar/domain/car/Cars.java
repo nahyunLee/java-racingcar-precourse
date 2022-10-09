@@ -1,5 +1,6 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
+import racingcar.domain.game.GameRoundResult;
 import racingcar.domain.strategy.MovingStrategy;
 import racingcar.domain.strategy.NumberGenerateStrategy;
 
@@ -49,7 +50,7 @@ public class Cars {
         HashMap<CarName, CarPosition> playedOneRoundResultMap = new HashMap<>();
 
         for (Car car : cars) {
-            CarStatus carStatus = movingStrategy.playRound(numberGenerateStrategy.generateNumber());
+            CarStatus carStatus = movingStrategy.getMoveStatus(numberGenerateStrategy.generateNumber());
             car.playRound(carStatus);
             playedOneRoundResultMap.put(car.getName(), car.getPosition());
         }

@@ -1,4 +1,7 @@
-package racingcar.domain;
+package racingcar.domain.game;
+
+import racingcar.domain.car.CarName;
+import racingcar.domain.car.CarPosition;
 
 import java.util.Collections;
 import java.util.Map;

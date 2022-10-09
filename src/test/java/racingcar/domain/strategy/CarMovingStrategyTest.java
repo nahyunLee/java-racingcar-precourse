@@ -1,8 +1,9 @@
-package racingcar.domain;
+package racingcar.domain.strategy;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.params.ParameterizedTest;
 import org.junit.jupiter.params.provider.ValueSource;
+import racingcar.domain.car.CarStatus;
 import racingcar.domain.strategy.CarMovingStrategy;
 import racingcar.domain.strategy.MovingStrategy;
 
@@ -18,7 +19,7 @@ public class CarMovingStrategyTest {
         MovingStrategy carMovingStrategy = new CarMovingStrategy();
 
         //when
-        CarStatus carStatus = carMovingStrategy.playRound(randomNumber);
+        CarStatus carStatus = carMovingStrategy.getMoveStatus(randomNumber);
 
         //then
         assertThat(carStatus).isEqualTo(CarStatus.MOVE);
@@ -32,7 +33,7 @@ public class CarMovingStrategyTest {
         MovingStrategy carMovingStrategy = new CarMovingStrategy();
 
         //when
-        CarStatus carStatus = carMovingStrategy.playRound(randomNumber);
+        CarStatus carStatus = carMovingStrategy.getMoveStatus(randomNumber);
 
         //then
         assertThat(carStatus).isEqualTo(CarStatus.STOP);

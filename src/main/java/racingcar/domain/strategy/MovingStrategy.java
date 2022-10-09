@@ -1,7 +1,7 @@
 package racingcar.domain.strategy;
 
-import racingcar.domain.CarStatus;
+import racingcar.domain.car.CarStatus;
 
 public interface MovingStrategy {
-    CarStatus playRound(int number);
+    CarStatus getMoveStatus(int number);
 }

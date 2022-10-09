@@ -1,7 +1,11 @@
-package racingcar.domain;
+package racingcar.domain.game;
 
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+import racingcar.domain.car.CarName;
+import racingcar.domain.car.CarPosition;
+import racingcar.domain.game.GameRoundResult;
+import racingcar.domain.game.GameRoundResults;
 
 import java.util.HashMap;
 import java.util.Map;

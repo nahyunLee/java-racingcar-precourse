@@ -1,9 +1,9 @@
 package racingcar.application;
 
-import racingcar.domain.CarNames;
-import racingcar.domain.Cars;
-import racingcar.domain.GameResult;
-import racingcar.domain.GameRoundResults;
+import racingcar.domain.car.CarNames;
+import racingcar.domain.car.Cars;
+import racingcar.domain.game.GameResult;
+import racingcar.domain.game.GameRoundResults;
 import racingcar.domain.strategy.CarMovingStrategy;
 import racingcar.domain.strategy.RandomNumberGenerateStrategy;
 

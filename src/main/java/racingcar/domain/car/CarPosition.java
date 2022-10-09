@@ -1,4 +1,4 @@
-package racingcar.domain;
+package racingcar.domain.car;
 
 import static racingcar.domain.ErrorMessage.MOVE_ONLY_FORWARD;
 

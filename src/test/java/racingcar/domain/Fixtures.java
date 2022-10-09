@@ -1,5 +1,7 @@
 package racingcar.domain;
 
+import racingcar.domain.car.Car;
+
 public class Fixtures {
 
     public static Car car1() {

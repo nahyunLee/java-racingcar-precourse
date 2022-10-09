@@ -1,7 +1,6 @@
-package racingcar.domain;
+package racingcar.domain.game;
 
-import java.util.Collections;
-import java.util.List;
+import racingcar.domain.car.CarNames;
 
 public class GameResult {
 
