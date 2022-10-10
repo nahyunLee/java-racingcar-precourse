@@ -64,15 +64,19 @@ public class Cars {
 
     public CarNames getWinnerCarNames() {
         List<CarName> winnerCars = new ArrayList<>();
-        CarPosition maxPosition = this.getMaxPosition();
-
         for (Car car : cars) {
-            if (car.getPosition().isEquals(maxPosition)) {
-                winnerCars.add(car.getName());
-            }
+            this.addWinnerCarName(winnerCars, car);
         }
 
         return CarNames.createCarNamesWithCarName(winnerCars);
+    }
+
+    public void addWinnerCarName(List<CarName> winnerCars, Car car) {
+        CarPosition maxPosition = this.getMaxPosition();
+
+        if (car.getPosition().isEquals(maxPosition)) {
+            winnerCars.add(car.getName());
+        }
     }
 
     private CarPosition getMaxPosition() {
