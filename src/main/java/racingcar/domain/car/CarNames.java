@@ -1,8 +1,8 @@
 package racingcar.domain.car;
 
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
+import java.util.*;
+
+import static racingcar.domain.ErrorMessage.DUPLICATE_CAR_NAME;
 
 public class CarNames {
 
@@ -13,12 +13,21 @@ public class CarNames {
     }
 
     public static CarNames createCarNamesWithStringCarName(List<String> carNameList) {
+        validCarNamesDuplicate(carNameList);
+
         List<CarName> carNames = new ArrayList<>();
         for (String carName : carNameList) {
             carNames.add(CarName.createCarName(carName));
         }
 
         return new CarNames(carNames);
+    }
+
+    private static void validCarNamesDuplicate(List<String> carNameList) {
+        Set<String> carNameSet = new HashSet<>(carNameList);
+        if (carNameSet.size() != carNameList.size()) {
+            throw new IllegalArgumentException(DUPLICATE_CAR_NAME);
+        }
     }
 
     public static CarNames createCarNamesWithCarName(List<CarName> carNames) {
