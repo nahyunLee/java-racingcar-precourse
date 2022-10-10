@@ -5,7 +5,6 @@ import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import racingcar.domain.car.CarName;
 import racingcar.domain.car.CarPosition;
-import racingcar.domain.game.GameRoundResult;
 
 import java.util.HashMap;
 import java.util.Map;

@@ -1,8 +1,10 @@
 package racingcar.domain.car;
 
 import racingcar.domain.game.GameRoundResult;
+import racingcar.domain.strategy.CarMovingStrategy;
 import racingcar.domain.strategy.MovingStrategy;
 import racingcar.domain.strategy.NumberGenerateStrategy;
+import racingcar.domain.strategy.RandomNumberGenerateStrategy;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -46,8 +48,10 @@ public class Cars {
         return createdCares;
     }
 
-    public GameRoundResult carsPlayRound(MovingStrategy movingStrategy, NumberGenerateStrategy numberGenerateStrategy) {
+    public GameRoundResult carsPlayRound() {
         HashMap<CarName, CarPosition> playedOneRoundResultMap = new HashMap<>();
+        NumberGenerateStrategy numberGenerateStrategy = new RandomNumberGenerateStrategy();
+        MovingStrategy movingStrategy = new CarMovingStrategy();
 
         for (Car car : cars) {
             CarStatus carStatus = movingStrategy.getMoveStatus(numberGenerateStrategy.generateNumber());

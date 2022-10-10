@@ -4,8 +4,6 @@ import racingcar.domain.car.CarNames;
 import racingcar.domain.car.Cars;
 import racingcar.domain.game.GameResult;
 import racingcar.domain.game.GameRoundResults;
-import racingcar.domain.strategy.CarMovingStrategy;
-import racingcar.domain.strategy.RandomNumberGenerateStrategy;
 
 import java.util.Arrays;
 
@@ -32,7 +30,7 @@ public class RacingGameService {
     private GameRoundResults playGameRounds(Cars cars, int roundCount) {
         GameRoundResults gameRoundResults = GameRoundResults.createEmptyGameRoundResults();
         for (int i = 0; i < roundCount; i++) {
-            gameRoundResults.addGameRoundResult(cars.carsPlayRound(new CarMovingStrategy(), new RandomNumberGenerateStrategy()));
+            gameRoundResults.addGameRoundResult(cars.carsPlayRound());
         }
 
         return gameRoundResults;

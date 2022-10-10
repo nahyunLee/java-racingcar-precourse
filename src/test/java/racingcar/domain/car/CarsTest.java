@@ -51,7 +51,7 @@ public class CarsTest {
         Cars cars = Cars.createCarsWithCarList(Arrays.asList(car1(), car2()));
 
         //when
-        cars.carsPlayRound(new CarMovingStrategy(), new RandomNumberGenerateStrategy());
+        cars.carsPlayRound();
 
         //then
         assertAll(
@@ -65,7 +65,7 @@ public class CarsTest {
     void testMoveCars_returnWithGameRoundResult() {
         //given
         Cars cars = Cars.createCarsWithCarList(Arrays.asList(car1(), car2()));
-        GameRoundResult gameRoundResult = cars.carsPlayRound(new CarMovingStrategy(), new RandomNumberGenerateStrategy());
+        GameRoundResult gameRoundResult = cars.carsPlayRound();
 
         //when
         Map<CarName, CarPosition> playedOneRoundResultMap = gameRoundResult.getGameRoundResultMap();
